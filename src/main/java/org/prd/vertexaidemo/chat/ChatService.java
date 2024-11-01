@@ -29,4 +29,53 @@ public class ChatService {
         return chatModel.stream(new Prompt(message));
     }
 
+    /*
+    * 	@Test
+	void textStream() {
+
+		String generationTextFromStream = this.chatModel
+			.stream(new Prompt("Explain Bulgaria? Answer in 10 paragraphs."))
+			.collectList()
+			.block()
+			.stream()
+			.map(ChatResponse::getResults)
+			.flatMap(List::stream)
+			.map(Generation::getOutput)
+			.map(AssistantMessage::getContent)
+			.collect(Collectors.joining());
+
+		// logger.info("" + actorsFilms);
+		assertThat(generationTextFromStream).isNotEmpty();
+	}
+
+	@Test
+	void beanStreamOutputConverterRecords() {
+
+		BeanOutputConverter<ActorsFilmsRecord> outputConverter = new BeanOutputConverter<>(ActorsFilmsRecord.class);
+
+		String format = outputConverter.getFormat();
+		String template = """
+				Generate the filmography of 5 movies for Tom Hanks.
+				Remove the ```json outer brackets.
+				{format}
+				""";
+		PromptTemplate promptTemplate = new PromptTemplate(template, Map.of("format", format));
+		Prompt prompt = new Prompt(promptTemplate.createMessage());
+
+		String generationTextFromStream = this.chatModel.stream(prompt)
+			.collectList()
+			.block()
+			.stream()
+			.map(ChatResponse::getResults)
+			.flatMap(List::stream)
+			.map(Generation::getOutput)
+			.map(AssistantMessage::getContent)
+			.collect(Collectors.joining());
+
+		ActorsFilmsRecord actorsFilms = outputConverter.convert(generationTextFromStream);
+		// logger.info("" + actorsFilms);
+		assertThat(actorsFilms.actor()).isEqualTo("Tom Hanks");
+		assertThat(actorsFilms.movies()).hasSize(5);
+	}*/
+
 }
